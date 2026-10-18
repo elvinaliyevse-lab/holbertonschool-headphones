@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Headphones - landing page of a headphone company">
+  <title>Headphones</title>
+  <link rel="icon" href="images/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="3-styles.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="container">
+      <nav class="navbar">
+        <input class="menu-toggle" type="checkbox" id="menu-toggle">
+        <label class="menu-button" for="menu-toggle">
+          <span class="icon icon-menu" aria-hidden="true"></span>
+          <span class="visually-hidden">Menu</span>
+        </label>
+        <a class="logo" href="#top">
+          <img src="images/logo_headphones.png" alt="Headphones" width="162" height="32">
+        </a>
+        <ul class="menu">
+          <li><a class="link" href="#what-we-do">what we do</a></li>
+          <li><a class="link" href="#our-results">our results</a></li>
+          <li><a class="link" href="#contact-us">contact us</a></li>
+        </ul>
+      </nav>
+      <div class="hero-content">
+        <h1 class="hero-title">Lorem ipsum dolor set amet lorem ipsum</h1>
+        <p class="hero-subtitle">Lorem ipsum dolor set amet lorem ipsum dolor set</p>
+        <a class="button" href="#contact-us">Call to action</a>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <section class="section" id="what-we-do">
+      <div class="container">
+        <h2 class="title">What we do...</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <ul class="items">
+          <li class="item">
+            <span class="icon icon-sound item-icon" aria-hidden="true"></span>
+            <h3 class="item-title">Lorem ipsum</h3>
+            <p class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="item">
+            <span class="icon icon-video item-icon" aria-hidden="true"></span>
+            <h3 class="item-title">Lorem ipsum</h3>
+            <p class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="item">
+            <span class="icon icon-music item-icon" aria-hidden="true"></span>
+            <h3 class="item-title">Lorem ipsum</h3>
+            <p class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+          <li class="item">
+            <span class="icon icon-hearing item-icon" aria-hidden="true"></span>
+            <h3 class="item-title">Lorem ipsum</h3>
+            <p class="item-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="section results" id="our-results">
+      <div class="container">
+        <h2 class="title">Our results speak for themselves</h2>
+        <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        <ul class="items">
+          <li class="item">
+            <div class="pentagon">
+              <p class="pentagon-value">+2%</p>
+              <p class="pentagon-label">Lorem ipsum dolor</p>
+            </div>
+          </li>
+          <li class="item">
+            <div class="pentagon">
+              <p class="pentagon-value">+2%</p>
+              <p class="pentagon-label">Lorem ipsum dolor</p>
+            </div>
+          </li>
+          <li class="item">
+            <div class="pentagon">
+              <p class="pentagon-value">+2%</p>
+              <p class="pentagon-label">Lorem ipsum dolor</p>
+            </div>
+          </li>
+          <li class="item">
+            <div class="pentagon">
+              <p class="pentagon-value">+2%</p>
+              <p class="pentagon-label">Lorem ipsum dolor</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="section contact" id="contact-us">
+      <div class="container">
+        <h2 class="title">Contact us</h2>
+        <form class="form" action="#" method="post">
+          <div class="form-group">
+            <input class="field" type="text" id="name" name="name" placeholder=" " autocomplete="name" minlength="2" maxlength="50" required>
+            <label class="label" for="name">Name</label>
+          </div>
+          <div class="form-group">
+            <input class="field" type="email" id="email" name="email" placeholder=" " autocomplete="email" maxlength="100" required>
+            <label class="label" for="email">Email</label>
+          </div>
+          <div class="form-group">
+            <textarea class="field" id="message" name="message" rows="1" placeholder=" " minlength="10" maxlength="500" required></textarea>
+            <label class="label" for="message">Your message</label>
+          </div>
+          <button class="button" type="submit">Call to action</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

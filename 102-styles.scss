@@ -1,0 +1,743 @@
+// SASS version of 101-styles.css
+// Compile with: sass 102-styles.scss > 101-styles.css
+
+// ==========================================================================
+// Sass variables, maps and mixins
+// ==========================================================================
+
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 900px;
+
+$icon-path: "fonts/holberton_school-icon";
+
+// Glyph codes of the holberton_school-icon font
+$icons-header: (menu: "\e911");
+$icons-items: (sound: "\e90e", video: "\e910", music: "\e90d", hearing: "\e909");
+$icons-social: (facebook: "\e908", twitter: "\e90f", instagram: "\e90a");
+
+// Hover animation of each "What we do..." icon
+$icon-animations: (
+  sound: equalize 0.6s,
+  video: wiggle 0.5s,
+  music: bounce 0.6s,
+  hearing: pulse 0.8s
+);
+
+$pentagon-float-step: 0.75s;
+
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin icon-glyphs($icons) {
+  @each $name, $code in $icons {
+    .icon-#{$name}::before {
+      content: $code;
+    }
+  }
+}
+
+@mixin hover-state {
+  &:hover,
+  &:active {
+    @content;
+  }
+}
+
+@mixin focus-ring {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+
+@font-face {
+  font-family: "holberton_school-icon";
+  src: url("#{$icon-path}.eot");
+  src: url("#{$icon-path}.eot#iefix") format("embedded-opentype"),
+    url("#{$icon-path}.woff") format("woff"),
+    url("#{$icon-path}.ttf") format("truetype"),
+    url("#{$icon-path}.svg#holberton_school-icon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+:root {
+  --color-primary: #ff6565;
+  --color-dark: #071629;
+  --color-light: #ffffff;
+  --color-muted: #5e6874;
+  --color-border: #d3d6d9;
+  --font-main: "Source Sans Pro", Arial, sans-serif;
+  --font-icon: "holberton_school-icon";
+  --content-width: 1000px;
+  --gutter: 20px;
+  --transition: 0.3s ease;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+p {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+}
+
+:focus-visible {
+  @include focus-ring;
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+
+.container {
+  max-width: calc(var(--content-width) + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.icon {
+  display: inline-block;
+  font-family: var(--font-icon);
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  text-transform: none;
+}
+
+@include icon-glyphs($icons-header);
+
+.link {
+  transition: color var(--transition);
+
+  @include hover-state {
+    color: var(--color-primary);
+  }
+}
+
+.button {
+  display: inline-block;
+  min-width: 162px;
+  height: 44px;
+  padding: 0 32px;
+  border-radius: 22px;
+  background-color: var(--color-primary);
+  color: var(--color-light);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 44px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity var(--transition);
+
+  @include hover-state {
+    opacity: 0.9;
+  }
+}
+
+.text {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   Header / Hero
+   ========================================================================== */
+
+.hero {
+  background: var(--color-dark) url("images/headphones_hero_1.jpg") center top / cover no-repeat;
+  color: var(--color-light);
+  text-align: center;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 27px;
+}
+
+.menu {
+  display: flex;
+  gap: 40px;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+}
+
+.menu-toggle,
+.menu-button {
+  display: none;
+}
+
+.hero-content {
+  padding: 313px 0 115px;
+}
+
+.hero-title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 40px;
+}
+
+.hero-subtitle {
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.hero {
+  .button {
+    margin-top: 40px;
+  }
+
+  .text {
+    margin-top: 65px;
+  }
+}
+
+@include mobile {
+  .navbar {
+    justify-content: center;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .menu-button {
+    display: block;
+    position: absolute;
+    top: 31px;
+    left: 0;
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .menu-toggle:focus-visible + .menu-button {
+    @include focus-ring;
+  }
+
+  .menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 16px;
+    padding: 8px 0;
+    border-radius: 8px;
+    background-color: var(--color-dark);
+    font-size: 14px;
+
+    .link {
+      display: block;
+      padding: 12px 0;
+    }
+  }
+
+  .menu-toggle:checked ~ .menu {
+    display: flex;
+  }
+
+  .hero {
+    background:
+      linear-gradient(rgba(7, 22, 41, 0.2), rgba(7, 22, 41, 0.3) 250px, rgba(7, 22, 41, 0.5) 420px, var(--color-dark) 575px),
+      var(--color-dark) url("images/headphones_hero_1.jpg") calc(50% + 190px) -54px / 1484px auto no-repeat;
+  }
+
+  .hero-content {
+    padding: 267px 0 106px;
+  }
+
+  .hero-subtitle {
+    max-width: 260px;
+    margin: 6px auto 0;
+  }
+
+  .hero .button {
+    margin-top: 20px;
+  }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+  padding: 110px 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 40px;
+
+  + .text {
+    margin-top: 40px;
+  }
+}
+
+/* Row of four items, reused by "What we do..." and "Our results" */
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 80px;
+  margin-top: 86px;
+}
+
+.item {
+  width: 205px;
+
+  &-icon {
+    display: block;
+    font-size: 100px;
+    color: var(--color-primary);
+  }
+
+  &-title {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  &-text {
+    margin-top: 13px;
+    font-size: 14px;
+  }
+}
+
+@include icon-glyphs($icons-items);
+
+@include tablet {
+  .items {
+    max-width: 470px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+@include mobile {
+  .section .text {
+    max-width: 320px;
+  }
+
+  .items {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 76px;
+  }
+}
+
+/* ==========================================================================
+   Our results
+   ========================================================================== */
+
+.results {
+  padding: 141px 0 98px;
+  background: var(--color-dark) url("images/headphones_hero_2.jpg") center / cover no-repeat;
+  color: var(--color-light);
+
+  .items {
+    row-gap: 61px;
+    margin-top: 56px;
+  }
+}
+
+.pentagon {
+  width: 180px;
+  height: 171px;
+  margin: 0 auto;
+  padding-top: 57px;
+  background: url("images/pentagone.png") center / contain no-repeat;
+
+  &-value {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 48px;
+  }
+
+  &-label {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+@include mobile {
+  .results {
+    padding: 123px 0 89px;
+    background:
+      linear-gradient(rgba(7, 22, 41, 0), rgba(7, 22, 41, 0.45) 120px, var(--color-dark) 330px),
+      var(--color-dark) url("images/headphones_hero_2.jpg") center -75px / 1400px auto no-repeat;
+
+    .title {
+      max-width: 270px;
+      margin: 0 auto;
+    }
+
+    .text {
+      max-width: 300px;
+      margin-top: 45px;
+    }
+
+    .items {
+      margin-top: 79px;
+    }
+  }
+}
+
+/* ==========================================================================
+   Contact us
+   ========================================================================== */
+
+.contact {
+  padding-bottom: 129px;
+}
+
+.form {
+  max-width: 336px;
+  margin: 48px auto 0;
+}
+
+.form-group {
+  position: relative;
+  text-align: left;
+
+  + .form-group {
+    margin-top: 36px;
+  }
+}
+
+.field {
+  display: block;
+  width: 100%;
+  padding: 8px 0 10px;
+  background:
+    linear-gradient(var(--color-primary), var(--color-primary)) left bottom / 0 2px no-repeat,
+    linear-gradient(var(--color-border), var(--color-border)) left bottom / 100% 1px no-repeat;
+  font-size: 14px;
+  line-height: 20px;
+  outline: none;
+  transition: background-size var(--transition);
+}
+
+textarea.field {
+  height: 38px;
+  resize: none;
+  transition: background-size var(--transition), height var(--transition);
+
+  &:focus,
+  &:not(:placeholder-shown) {
+    height: 96px;
+  }
+}
+
+.label {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform var(--transition), color var(--transition);
+}
+
+/* Floating label: moves up when the field is focused or filled */
+
+.field {
+  &:focus + .label,
+  &:not(:placeholder-shown) + .label {
+    color: var(--color-muted);
+    transform: translateY(-22px) scale(0.85);
+  }
+
+  &:focus,
+  &:not(:placeholder-shown):invalid {
+    background-size: 100% 2px, 100% 1px;
+  }
+
+  &:focus + .label,
+  &:not(:placeholder-shown):invalid + .label {
+    color: var(--color-primary);
+  }
+}
+
+.form .button {
+  margin-top: 56px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.footer {
+  padding: 90px 0 37px;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+
+  &-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.socials {
+  display: flex;
+  gap: 18px;
+}
+
+.social-link {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.copyright {
+  margin-top: 70px;
+  color: var(--color-muted);
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+}
+
+@include icon-glyphs($icons-social);
+
+@include mobile {
+  .footer {
+    padding: 46px 0 32px;
+
+    &-top {
+      flex-direction: column;
+      align-items: center;
+      gap: 47px;
+    }
+  }
+
+  .copyright {
+    margin-top: 41px;
+  }
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+/* Items lift up on hover ("What we do..." and "Our results") */
+
+.item {
+  transition: transform var(--transition);
+
+  &:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* "What we do..." icons: each icon has its own animation on hover */
+
+@each $icon, $animation in $icon-animations {
+  .item:hover .icon-#{$icon} {
+    animation: $animation ease-in-out infinite;
+  }
+}
+
+/* "Our results" pentagons: float all the time, spin on hover */
+
+.pentagon {
+  animation: float 3s ease-in-out infinite;
+}
+
+@for $i from 2 through 4 {
+  .item:nth-child(#{$i}) .pentagon {
+    animation-delay: -$pentagon-float-step * ($i - 1);
+  }
+}
+
+.item:hover .pentagon {
+  animation: spin 0.8s ease-in-out;
+}
+
+@keyframes equalize {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  25% {
+    transform: scaleY(0.6);
+  }
+
+  50% {
+    transform: scaleY(1.2);
+  }
+
+  75% {
+    transform: scaleY(0.8);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  25% {
+    transform: rotate(-10deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-16px);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0) scale(1);
+  }
+
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
